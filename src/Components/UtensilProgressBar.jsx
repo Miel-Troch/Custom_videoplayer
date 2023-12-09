@@ -14,7 +14,7 @@ const UtensilProgressBar = ({ played, onSeek, onSeekMouseUp }) => {
     <Grid container direction='row' alignItems='center' className='duration__container'>
       <Grid item container justifyContent='space-evenly' xs={2} sm={2} style={{ padding: 0 }}>
         <Grid item>
-          <Typography color={'#00b649'}>Utensil</Typography>
+          <Typography color={'#00b649'}>Utensils</Typography>
         </Grid>
       </Grid>
       <CustomSlider

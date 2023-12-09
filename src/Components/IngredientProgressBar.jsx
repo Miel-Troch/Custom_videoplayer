@@ -14,7 +14,7 @@ const IngredientProgressBar = ({ played, onSeek, onSeekMouseUp }) => {
     <Grid container direction='row' alignItems='center' className='duration__container'>
       <Grid item container justifyContent='space-evenly' xs={2} sm={2} style={{ padding: 0 }}>
         <Grid item>
-          <Typography color={'#0077b6'}>Ingredient</Typography>
+          <Typography color={'#0077b6'}>Ingredients</Typography>
         </Grid>
       </Grid>
       <CustomSlider
