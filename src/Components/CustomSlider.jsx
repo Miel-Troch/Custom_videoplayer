@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
 import Grid from '@mui/material/Grid'
 import PropTypes from 'prop-types'
 import Slider from '@mui/material/Slider'
@@ -7,9 +5,9 @@ import { styled, useTheme } from '@mui/material/styles'
 
 import './ControlIcons.css'
 
-const CustomSlider = ({ played, onSeek, onSeekMouseUp, marks }) => {
+const CustomSlider = ({ isIngredient, played, onSeek, onSeekMouseUp, marks }) => {
   const theme = useTheme()
-  
+
   const PrettoSlider = styled(Slider)({
     color: '#00b4d8',
     borderRadius: 100,
@@ -18,7 +16,7 @@ const CustomSlider = ({ played, onSeek, onSeekMouseUp, marks }) => {
       display: 'none',
     },
     '& .MuiSlider-track': {
-      backgroundColor: '#0077b6',
+      backgroundColor: isIngredient ? '#0077b6' : '#00b649',
       padding: 6,
       paddingLeft: 0,
       paddingRight: 0,
@@ -35,18 +33,25 @@ const CustomSlider = ({ played, onSeek, onSeekMouseUp, marks }) => {
       marginLeft: '-10px', // Adjust this value as needed
     },
     '& .MuiSlider-mark': {
-      width: 10,
-      height: 10,
-      backgroundColor: '#0077b6',
+      width: 40,
+      height: 40,
       borderRadius: 100,
-      border: '4px solid white',
+      border:  isIngredient ? '4px solid #0077b6' : '4px solid#00b649',
       boxShadow: ' -4px 0px 15px 5px rgb(0,0,0,0.4)',
-
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
       '&:before': { boxShadow: '0 4px 12px 0 rgba(0,0,0,0.4)' },
       '&:hover, &.Mui-focusVisible': {
         boxShadow: `0px 0px 0px 8px ${theme.palette.mode === 'light' ? 'rgb(255 255 255 / 16%)' : 'rgb(0 0 0 / 16%)'}`,
       },
+    },
+    '& .MuiSlider-mark[data-index="0"]': {
+      backgroundImage: isIngredient ? 'url(/src/assets/pastaS.jpg)' : 'url(/src/assets/lepelS.jpg)',
+    },
+    '& .MuiSlider-mark[data-index="1"]': {
+      backgroundImage: isIngredient ? 'url(/src/assets/uiS.jpg)' : null,
+    },
+    '& .MuiSlider-mark[data-index="2"]': {
+      backgroundImage: isIngredient ? 'url(/src/assets/paprikaS.jpg)' : null,
     },
     '& .MuiSlider-markLabel': {
       color: 'white',
@@ -71,12 +76,14 @@ const CustomSlider = ({ played, onSeek, onSeekMouseUp, marks }) => {
           onChange={onSeek}
           onChangeCommitted={onSeekMouseUp}
           valueLabelFormat={formatDuration(played)}
+          style={{}}
         />
       </Grid>
     </>
   )
 }
 CustomSlider.propTypes = {
+  isIngredient: PropTypes.bool,
   played: PropTypes.number.isRequired,
   onSeek: PropTypes.func.isRequired,
   onSeekMouseUp: PropTypes.func.isRequired,
