@@ -63,7 +63,6 @@ const ControlIcons = ({
       borderRadius: 100,
       border: "4px solid white",
       boxShadow: " -4px 0px 15px 5px rgb(0,0,0,0.4)",
-
       transition: "0.3s cubic-bezier(.47,1.64,.41,.8)",
       "&:before": { boxShadow: "0 4px 12px 0 rgba(0,0,0,0.4)" },
       "&:hover, &.Mui-focusVisible": {

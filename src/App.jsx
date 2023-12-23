@@ -4,7 +4,7 @@ import ControlIcons from './Components/ControlIcons'
 import './App.css'
 import IngredientProgressBar from './Components/IngredientProgressBar'
 import UtensilProgressBar from './Components/UtensilProgressBar'
-import { Box, IconButton, Grid, Card, Typography, Button, Icon } from '@mui/material'
+import { Box, IconButton, Grid, Card, Typography, Button } from '@mui/material'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 
@@ -35,10 +35,22 @@ function App() {
     playerRef.current.seekTo(parseFloat(newValue / 100), 'fraction')
   }
 
+  const handlePlayerSeekItemBar = (e, newValue) => {
+    setPlayerState({
+      ...playerState,
+      seeking: true,
+      played: parseFloat(newValue / 100) + 0.02,
+    })
+    playerRef.current.seekTo(parseFloat(newValue / 100) + 0.02)
+  }
+
+  const handlePlayerMouseSeekUpItemBar = (e, newValue) => {
+    setPlayerState({ ...playerState, seeking: true })
+    playerRef.current.seekTo(parseFloat(newValue / 100) + 0.02, 'fraction')
+  }
+
   const handlePlayerProgress = (state) => {
-    if (!playerState.seeking) {
-      setPlayerState({ ...playerState, ...state })
-    }
+    setPlayerState({ ...playerState, ...state })
   }
 
   const items = [
@@ -85,26 +97,26 @@ function App() {
         <Grid container direction='row' justifyContent='center' alignItems='center'>
           <IngredientProgressBar
             played={playerState.played * 100}
-            onSeek={handlePlayerSeek}
-            onSeekMouseUp={handlePlayerMouseSeekUp}
+            onSeek={handlePlayerSeekItemBar}
+            onSeekMouseUp={handlePlayerMouseSeekUpItemBar}
           />
         </Grid>
         <Grid container direction='row' justifyContent='center' alignItems='center'>
           <UtensilProgressBar
             played={playerState.played * 100}
-            onSeek={handlePlayerSeek}
-            onSeekMouseUp={handlePlayerMouseSeekUp}
+            onSeek={handlePlayerSeekItemBar}
+            onSeekMouseUp={handlePlayerMouseSeekUpItemBar}
           />
         </Grid>
       </Grid>
       <Grid item className='product__container'>
         <Grid container className='cart__buttons__container' justifyContent='center' alignItems='center'>
-          <Card sx={{ borderRadius: '30px', m: 3 }}>
+          <Card sx={{ borderRadius: '30px', m: 2 }}>
             <IconButton aria-label='list' size='large'>
               <FormatListBulletedIcon fontSize='large' />
             </IconButton>
           </Card>
-          <Card sx={{ borderRadius: '30px', m: 3 }}>
+          <Card sx={{ borderRadius: '30px', m: 2 }}>
             <IconButton aria-label='list' size='large'>
               <ShoppingCartIcon fontSize='large' />
             </IconButton>
@@ -157,17 +169,17 @@ function App() {
         <Grid container className='add__cart__buttons__container' justifyContent='center' alignItems='center'>
           <Button
             variant='contained'
-            sx={{ borderRadius: '30px', p: 1, backgroundColor: 'orange', ':hover': { backgroundColor: 'orange' } }}
+            sx={{ borderRadius: '30px', p: 2, backgroundColor: 'orange', ':hover': { backgroundColor: 'orange' } }}
           >
-            <FormatListBulletedIcon fontSize='large' sx={{ mr: 2 }} />
+            <ShoppingCartIcon sx={{ mr: 2 }} />
             <Typography>add to shopping cart</Typography>
           </Button>
           <Button
             variant='contained'
-            sx={{ borderRadius: '30px', p: 1, backgroundColor: '#0077b6', ':hover': { backgroundColor: '#0077b6' } }}
+            sx={{ borderRadius: '30px', p: 2, backgroundColor: '#0077b6', ':hover': { backgroundColor: '#0077b6' } }}
           >
-            <ShoppingCartIcon fontSize='large' sx={{ mr: 2 }} />
-            <Typography>add to shopping cart</Typography>
+            <FormatListBulletedIcon sx={{ mr: 2 }} />
+            <Typography>add to shopping list</Typography>
           </Button>
         </Grid>
       </Grid>

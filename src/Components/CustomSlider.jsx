@@ -16,11 +16,11 @@ const CustomSlider = ({ isIngredient, played, onSeek, onSeekMouseUp, marks }) =>
       display: 'none',
     },
     '& .MuiSlider-track': {
-      backgroundColor: isIngredient ? '#0077b6' : '#00b649',
+      backgroundColor: 'rgba(222, 226, 230,0.9)',
       padding: 6,
       paddingLeft: 0,
       paddingRight: 0,
-      border: '5px solid white',
+      border: '0',
       marginLeft: '-5px', // Adjust this value as needed
     },
     '& .MuiSlider-rail': {
@@ -36,7 +36,7 @@ const CustomSlider = ({ isIngredient, played, onSeek, onSeekMouseUp, marks }) =>
       width: 40,
       height: 40,
       borderRadius: 100,
-      border:  isIngredient ? '4px solid #0077b6' : '4px solid#00b649',
+      border:  isIngredient ? '4px solid #0077b6' : '4px solid #00b649',
       boxShadow: ' -4px 0px 15px 5px rgb(0,0,0,0.4)',
       transition: '0.3s cubic-bezier(.47,1.64,.41,.8)',
       '&:before': { boxShadow: '0 4px 12px 0 rgba(0,0,0,0.4)' },
