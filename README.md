@@ -1,1 +1,1 @@
-This is some startcode for a bigger project where a custom videoplyer is needed
+This is some startcode for a bigger project where a custom videoplayer is needed
